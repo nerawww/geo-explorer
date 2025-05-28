@@ -1,59 +1,58 @@
 <!DOCTYPE html>
-<html lang="fr">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geo Explorer</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="style.css">
     <script defer type="module" src="./main.js"></script>
+    <title>jsp</title>
 </head>
-
 <body>
     <header>
-        <h1>🌍 Geo Explorer</h1>
-        <p>Découvrez les pays du monde entier</p>
+        <div class="header-left" id="favBar">
+            <h1>Favoris :</h1>
+            <ul id="favList"></ul>
+        </div>
+        <div class="header-center">
+            <input type="text" id="countryInput" placeholder="Rechercher un pays...">
+            <button id="searchBtn">Rechercher</button>
+        </div>
     </header>
-
-    <main>
-        <!-- Section de recherche - Dév 1 -->
-        <section class="search-section">
-            <form>
-                <label for="country-input">Rechercher un pays</label>
-                <div class="search-input-group">
-                    <input type="text" id="country-input" name="country" placeholder="Ex: France, Canada, Japon...">
-                    <button type="submit" class="btn btn-search">
-                        🔍 Rechercher
-                    </button>
-                </div>
-            </form>
-        </section>
-
-        <!-- Zone d'affichage des résultats - Dév 2 -->
-        <section class="country-section" id="country-section" style="display: none;">
-            <div class="country-container" id="country-container">
-                <!-- Les détails du pays seront affichés ici -->
+    <div class="infoBlocksWrapper">
+        <section id="infoBlockLeft" class="infoBlock">
+            <h2>Informations sur le pays</h2>
+            <div id="infoContentLeft">
+                <div id="capitalContainer"></div>
+                <div id="regionContainer"></div>
+                <div id="languageContainer"></div>
+                <div id="monneyContainer"></div>
+                <div id="populationContainer"></div>
+                <div id="areaContainer"></div>
+                <div id="densityContainer"></div>
+                <div id="flagContainer"></div>
             </div>
         </section>
-
-        <!-- Section des favoris - Dév 3 -->
-        <section class="favorites-section" id="favorites-section" style="display: none;">
-            <div class="favorites-header">
-                <h2>Mes Pays Favoris (<span id="favorites-count">0</span>)</h2>
-                <button id="toggle-favorites" class="btn btn-toggle">
-                    📋 Afficher les favoris
-                </button>
-            </div>
-            <div id="favorites-container" class="favorites-container">
-                <!-- Les favoris seront affichés ici -->
+        <section id="infoBlockRight" class="infoBlock">
+            <h2>c'est la carte</h2>
+            <div id="infoContentRight">
+              
             </div>
         </section>
-    </main>
-
+    </div>
     <footer>
-        <p>&copy; 2025 Geo Explorer - Données fournies par <a href="https://restcountries.com" target="_blank">REST
-                Countries API</a></p>
+        <ul class="footer-links">
+            <li><a></a>A propos</li>
+            <li><a></a>retour en haut</li>
+            <li><a></a>Nous soutenir</li>
+            <li><a></a>J'ai plus d'idée</li>
+            <li><a></a>Besoin d'aide ?</li>
+            <li><a></a>Contact</li>
+            <li><a></a>Mentions légales</li>
+            <li><a></a>Help</li>
+            <li><a></a>Politique de confidentialité</li>
+            <li><a></a>Conditions d'utilisation</li>
+            <li><a></a>D:<</li>
+        </ul>
     </footer>
 </body>
-
 </html>
