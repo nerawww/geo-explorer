@@ -1,4 +1,4 @@
-import { getCountryByName } from './components/services/api.js';
+import { getCountryByName } from './services/api.js';
 
 
 document.getElementById('searchBtn').addEventListener('click', displayCountryInfo);
