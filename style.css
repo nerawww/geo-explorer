@@ -1,0 +1,260 @@
+/* === RESET ET BASE === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background-color: #f5f7fa;
+}
+
+/* === HEADER === */
+header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* === MAIN CONTENT === */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* === SECTION SEARCH === */
+.search-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.search-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #555;
+  font-size: 1.1rem;
+}
+
+.search-input-group {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+#country-input {
+  flex: 1;
+  padding: 1rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+#country-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+#country-input::placeholder {
+  color: #999;
+}
+
+/* === BOUTONS === */
+.btn {
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-search {
+  background: #667eea;
+  color: white;
+}
+
+.btn-search:hover {
+  background: #5a6fd8;
+  transform: translateY(-2px);
+}
+
+.btn-toggle {
+  background: #28a745;
+  color: white;
+}
+
+.btn-toggle:hover {
+  background: #218838;
+}
+
+/* === SECTIONS CACHÉES === */
+.country-section,
+.favorites-section {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+/* === SECTION COUNTRY === */
+.country-container {
+  padding: 2rem;
+}
+
+/* === SECTION FAVORITES === */
+.favorites-header {
+  background: #f8f9fa;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.favorites-header h2 {
+  color: #333;
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+#favorites-count {
+  color: #667eea;
+  font-weight: 700;
+}
+
+.favorites-container {
+  padding: 2rem;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-style: italic;
+}
+
+/* === FOOTER === */
+footer {
+  background: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 3rem;
+}
+
+footer a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .search-input-group {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .favorites-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  main {
+    padding: 1rem;
+  }
+
+  .search-section,
+  .country-section,
+  .favorites-section {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 1.5rem 1rem;
+  }
+
+  .search-section,
+  .country-container,
+  .favorites-container {
+    padding: 1.5rem;
+  }
+
+  .favorites-header {
+    padding: 1rem 1.5rem;
+  }
+}
+
+/* === ÉTATS DE CHARGEMENT/FOCUS === */
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* === CLASSES UTILITAIRES === */
+.hidden {
+  display: none !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+.mb-2 {
+  margin-bottom: 2rem;
+}
+.mt-1 {
+  margin-top: 1rem;
+}
+.mt-2 {
+  margin-top: 2rem;
+}
