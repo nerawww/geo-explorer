@@ -1,51 +1,3 @@
-import { getCountryByName } from './services/api.js';
-import { 
-  displayFlag,
-  displayCapital,
-  displayRegion,
-  displayLanguages,
-  displayCurrency,
-  displayPopulation,
-  displayArea,
-  displayDensity,
-  displayMap
-} from './components/CountryDetail.js';
-
-
-document.getElementById('searchBtn').addEventListener('click', displayCountryInfo);
-
-
-
-async function displayCountryInfo() {
-  const name = document.getElementById('countryInput').value.trim();
-  if (!name) return;
-
-  try {
-    const data = await getCountryByName(name);
-    const country = data[0];
-
-    displayFlag(country);
-    displayCapital(country);
-    displayRegion(country);
-    displayLanguages(country);
-    displayCurrency(country);
-    displayPopulation(country);
-    displayArea(country);
-    displayDensity(country);
-    displayMap(country);
-  } catch (e) {
-    displayFlag(null);
-    displayCapital(null);
-    displayRegion(null);
-    displayLanguages(null);
-    displayCurrency(null);
-    displayPopulation(null);
-    displayArea(null);
-    displayDensity(null);
-    displayMap(null);
-  }
-}
-
 let countryNames = [];
 
 async function fetchAllCountryNames() {
@@ -53,18 +5,16 @@ async function fetchAllCountryNames() {
   const data = await response.json();
   countryNames = data.map(c => c.name.common).sort();
 }
-fetchAllCountryNames()
+fetchAllCountryNames();
 
 const input = document.getElementById('countryInput');
 const suggestionBox = document.createElement('ul');
 suggestionBox.style.position = 'absolute';
 suggestionBox.style.background = '#fff';
 suggestionBox.style.color = '#000';
-
 suggestionBox.style.margin = '0';
 suggestionBox.style.padding = '0';
 suggestionBox.style.listStyle = 'none';
-
 
 input.parentNode.appendChild(suggestionBox);
 
