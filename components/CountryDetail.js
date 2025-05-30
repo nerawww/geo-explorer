@@ -1,115 +1,56 @@
+// -----------------------------affiche le nom du pays----------------------------------------------
+export function displayCountryName(country) {
+  document.getElementById('countryName').textContent = `Région : ${country.name.common}`;
+}
 
 // -----------------------------affiche le drapeau du pays----------------------------------------------
 export function displayFlag(country) {
-  const flagContainer = document.getElementById('flagContainer');
-  flagContainer.innerHTML = '';
-  if (country && country.flags?.svg) {
-    const alt = country.name?.common || 'drapeau';
-    flagContainer.innerHTML = `<img src="${country.flags.svg}" alt="Flag of ${alt}" width="200">`;
-  } else {
-    flagContainer.textContent = country ? 'drapeau non trouvé' : 'pays non trouvé';
-  }
+  document.getElementById('flagContainer').innerHTML = `<img src="${country.flags.svg}" alt="Flag of ${country.name.common}" width="100">`;
 }
+
 // -----------------------------affiche la capitale du pays----------------------------------------------
 export function displayCapital(country) {
-  const capitalContainer = document.getElementById('capitalContainer');
-  capitalContainer.innerHTML = '';
-  if (country && country.capital?.[0]) {
-    capitalContainer.textContent = `Capitale : ${country.capital[0]}`;
-  } else {
-    capitalContainer.textContent = country ? 'capitale non trouvée' : '';
-  }
+  document.getElementById('capitalContainer').textContent = `Capitale : ${country.capital[0]}`;
 }
+
 // -----------------------------affiche le continent du pays----------------------------------------------
 export function displayRegion(country) {
-  const regionContainer = document.getElementById('regionContainer');
-  regionContainer.innerHTML = '';
-  if (country && country.region) {
-    regionContainer.textContent = `Région : ${country.region}`;
-  } else {
-    regionContainer.textContent = country ? 'région non trouvée' : '';
-  }
+  document.getElementById('regionContainer').textContent = `Région : ${country.region}`;
 }
+
 // -----------------------------affiche la langue du pays----------------------------------------------
 export function displayLanguages(country) {
-  const languageContainer = document.getElementById('languageContainer');
-  languageContainer.innerHTML = '';
-  if (country && country.languages) {
-    const langs = Object.values(country.languages).join(', ');
-    languageContainer.textContent = `Langues : ${langs}`;
-  } else {
-    languageContainer.textContent = country ? 'langues non trouvées' : '';
-  }
+  document.getElementById('languageContainer').textContent = `Langues : ${Object.values(country.languages).join(', ')}`;
 }
+
 // -----------------------------affiche la monnaie du pays----------------------------------------------
 export function displayCurrency(country) {
-  const monneyContainer = document.getElementById('monneyContainer');
-  monneyContainer.innerHTML = '';
-  if (country && country.currencies) {
-    const currencies = Object.values(country.currencies)
-      .map(c => `${c.name} (${c.symbol || ''})`).join(', ');
-    monneyContainer.textContent = `Monnaie : ${currencies}`;
-  } else {
-    monneyContainer.textContent = country ? 'monnaie non trouvée' : '';
-  }
+  const currencies = Object.values(country.currencies).map(c => `${c.name} (${c.symbol || ''})`).join(', ');
+  document.getElementById('monneyContainer').textContent = `Monnaie : ${currencies}`;
 }
+
 // -----------------------------affiche la population du pays----------------------------------------------
 export function displayPopulation(country) {
-  const populationContainer = document.getElementById('populationContainer');
-  populationContainer.innerHTML = '';
-  if (country && country.population) {
-    populationContainer.textContent = `Population : ${country.population.toLocaleString()}`;
-  } else {
-    populationContainer.textContent = country ? 'population non trouvée' : '';
-  }
+  document.getElementById('populationContainer').textContent = `Population : ${country.population.toLocaleString()}`;
 }
+
 // -----------------------------affiche la superficie du pays----------------------------------------------
 export function displayArea(country) {
-  const areaContainer = document.getElementById('areaContainer');
-  areaContainer.innerHTML = '';
-  if (country && country.area) {
-    areaContainer.textContent = `Superficie : ${country.area.toLocaleString()} km²`;
-  } else {
-    areaContainer.textContent = country ? 'superficie non trouvée' : '';
-  }
+  document.getElementById('areaContainer').textContent = `Superficie : ${country.area.toLocaleString()} km²`;
 }
 
 // -----------------------------affiche la densité du pays----------------------------------------------
 export function displayDensity(country) {
-  const densityContainer = document.getElementById('densityContainer');
-  densityContainer.innerHTML = '';
-  if (country && country.population && country.area) {
-    const density = (country.population / country.area).toFixed(2);
-    densityContainer.textContent = `Densité : ${density} hab/km²`;
-  } else {
-    densityContainer.textContent = country ? 'densité non trouvée' : '';
-  }
+  const density = (country.population / country.area).toFixed(2);
+  document.getElementById('densityContainer').textContent = `Densité : ${density} hab/km²`;
 }
 
 // -----------------------------affiche la carte du pays----------------------------------------------
 export function displayMap(country) {
-  const mapContainer = document.getElementById('infoContentRight');
-  mapContainer.innerHTML = '';
-  if (country && country.latlng && country.latlng.length === 2) {
-    const [lat, lng] = country.latlng;
-// défini le niveau de zoom de la carte
-    const bboxLngDelta = 5;
-    const bboxLatDelta = 3;
-    const iframe = document.createElement('iframe');
-
-// défini la taille de la carte
-    iframe.width = "800";
-    iframe.height = "700";
-    iframe.src = `https://www.openstreetmap.org/export/embed.html?bbox=${lng-bboxLngDelta}%2C${lat-bboxLatDelta}%2C${lng+bboxLngDelta}%2C${lat+bboxLatDelta}&layer=mapnik&marker=${lat}%2C${lng}`;
-    mapContainer.appendChild(iframe);
-
-    if (country.cca3) {
-      const link = document.createElement('a');
-      link.href = `https://www.openstreetmap.org/relation/${country.cca3}`;
-    }
-  } else {
-    mapContainer.textContent = country ? 'Carte non disponible' : '';
-  }
+  const [lat, lng] = country.latlng;
+  const bboxLngDelta = 5, bboxLatDelta = 3;
+  document.getElementById('infoContentRight').innerHTML = 
+    `<iframe width="800" height="700" src="https://www.openstreetmap.org/export/embed.html?bbox=${lng-bboxLngDelta}%2C${lat-bboxLatDelta}%2C${lng+bboxLngDelta}%2C${lat+bboxLatDelta}&layer=mapnik&marker=${lat}%2C${lng}"></iframe>`;
 }
 
 

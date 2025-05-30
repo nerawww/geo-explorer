@@ -9,13 +9,15 @@
 </head>
 <body>
     <header>
-        <div class="header-left" id="favBar">
-            <h1>Favoris :</h1>
+        <div class="headerLeft">
+            <h1></h1>
+        </div>
+        <div class="headerRight">
             <ul id="favList"></ul>
         </div>
-        <div class="header-center">
+        <div class="headerCenter">
            <!--l'id countryInput permet de définir le pays dans le fichier Search.js  -->
-            <input type="text" id="countryInput" placeholder="Rechercher un pays...">
+            <input type="text" id="countryInput" autocomplete="off" placeholder="Rechercher un pays...">
             <button id="searchBtn">Rechercher</button>
         </div>
     </header>
@@ -23,6 +25,7 @@
         <section id="infoBlockLeft" class="infoBlock">
             <h2>Informations sur le pays</h2>
             <div id="infoContentLeft">
+                <div id="countryName"></div>
                 <div id="capitalContainer"></div>
                 <div id="regionContainer"></div>
                 <div id="languageContainer"></div>
@@ -32,11 +35,11 @@
                 <div id="densityContainer"></div>
                 <div id="flagContainer"></div>
             </div>
+            <button id="favBtn">ajouter au favoris</button>
         </section>
         <section id="infoBlockRight" class="infoBlock">
             <h2>c'est la carte</h2>
             <div id="infoContentRight">
-              
             </div>
         </section>
     </div>

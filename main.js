@@ -8,13 +8,15 @@ import {
   displayPopulation,
   displayArea,
   displayDensity,
-  displayMap
+  displayMap,
+  displayCountryName 
 } from './components/CountryDetail.js';
+import { setupCountryAutocomplete } from './components/Search.js';
+import { addFavorite, removeFavorite, renderFavorites, isFavorite } from './components/Favorites.js';
 
+let lastCountry = null;
 
 document.getElementById('searchBtn').addEventListener('click', displayCountryInfo);
-
-
 
 async function displayCountryInfo() {
   const name = document.getElementById('countryInput').value.trim();
@@ -23,7 +25,9 @@ async function displayCountryInfo() {
   try {
     const data = await getCountryByName(name);
     const country = data[0];
+    lastCountry = country;
 
+    displayCountryName(country); 
     displayFlag(country);
     displayCapital(country);
     displayRegion(country);
@@ -33,7 +37,11 @@ async function displayCountryInfo() {
     displayArea(country);
     displayDensity(country);
     displayMap(country);
+
+    updateFavBtn();
   } catch (e) {
+    lastCountry = null;
+    displayCountryName(null); 
     displayFlag(null);
     displayCapital(null);
     displayRegion(null);
@@ -43,49 +51,36 @@ async function displayCountryInfo() {
     displayArea(null);
     displayDensity(null);
     displayMap(null);
+    updateFavBtn();
   }
 }
 
-let countryNames = [];
-
-async function fetchAllCountryNames() {
-  const response = await fetch('https://restcountries.com/v3.1/all');
-  const data = await response.json();
-  countryNames = data.map(c => c.name.common).sort();
+function updateFavBtn() {
+  const favBtn = document.getElementById('favBtn');
+  if (!lastCountry) {
+    favBtn.textContent = 'ajouter au favoris';
+    favBtn.disabled = true;
+    return;
+  }
+  favBtn.disabled = false;
+  if (isFavorite(lastCountry)) {
+    favBtn.textContent = 'supprimer des favoris';
+  } else {
+    favBtn.textContent = 'ajouter au favoris';
+  }
 }
-fetchAllCountryNames()
 
-const input = document.getElementById('countryInput');
-const suggestionBox = document.createElement('ul');
-suggestionBox.style.position = 'absolute';
-suggestionBox.style.background = '#fff';
-suggestionBox.style.color = '#000';
+setupCountryAutocomplete();
+renderFavorites();
+updateFavBtn();
 
-suggestionBox.style.margin = '0';
-suggestionBox.style.padding = '0';
-suggestionBox.style.listStyle = 'none';
-
-
-input.parentNode.appendChild(suggestionBox);
-
-input.addEventListener('input', function() {
-  suggestionBox.style.top = (input.offsetTop + input.offsetHeight) + 'px';
-
-  const value = input.value.trim().toLowerCase();
-  suggestionBox.innerHTML = '';
-  if (!value) return;
-  const matches = countryNames.filter(name => name.toLowerCase().startsWith(value));
-  matches.slice(0, 5).forEach(name => {
-    const li = document.createElement('li');
-    li.textContent = name;
-    li.style.padding = '0.5rem';
-    li.style.borderBottom = '1px solid #eee';
-    li.style.color = '#000'; 
-    li.addEventListener('mousedown', function(e) {
-      e.preventDefault();
-      input.value = name;
-      suggestionBox.innerHTML = '';
-    });
-    suggestionBox.appendChild(li);
-  });
+document.getElementById('favBtn').addEventListener('click', () => {
+  if (!lastCountry) return;
+  if (isFavorite(lastCountry)) {
+    removeFavorite(lastCountry);
+  } else {
+    addFavorite(lastCountry);
+  }
+  updateFavBtn();
 });
+
