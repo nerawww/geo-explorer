@@ -15,6 +15,14 @@ import { setupCountryAutocomplete } from './components/Search.js';
 import { addFavorite, removeFavorite, renderFavorites, isFavorite } from './components/Favorites.js';
 
 let lastCountry = null;
+let validCountryNames = [];
+
+async function fetchCountryNames() {
+  const res = await fetch('https://restcountries.com/v3.1/all');
+  const data = await res.json();
+  validCountryNames = data.map(c => c.name.common.toLowerCase());
+}
+fetchCountryNames();
 
 document.getElementById('searchBtn').addEventListener('click', displayCountryInfo);
 
@@ -22,9 +30,19 @@ async function displayCountryInfo() {
   const name = document.getElementById('countryInput').value.trim();
   if (!name) return;
 
+// compare les pays avec une liste de noms valides
+  const isValidCountry = validCountryNames.includes(name.toLowerCase());
+  if (!isValidCountry) {
+    lastCountry = null;
+    clearCountryDetails();
+    updateFavBtn();
+    return;
+  }
+
   try {
     const data = await getCountryByName(name);
-    const country = data[0];
+    const country = data.find(c => c.name.common.toLowerCase() === name.toLowerCase());
+    if (!country) throw new Error('Country not found');
     lastCountry = country;
 
     displayCountryName(country); 
@@ -41,18 +59,22 @@ async function displayCountryInfo() {
     updateFavBtn();
   } catch (e) {
     lastCountry = null;
-    displayCountryName(null); 
-    displayFlag(null);
-    displayCapital(null);
-    displayRegion(null);
-    displayLanguages(null);
-    displayCurrency(null);
-    displayPopulation(null);
-    displayArea(null);
-    displayDensity(null);
-    displayMap(null);
+    clearCountryDetails();
     updateFavBtn();
   }
+}
+
+function clearCountryDetails() {
+  displayCountryName(null); 
+  displayFlag(null);
+  displayCapital(null);
+  displayRegion(null);
+  displayLanguages(null);
+  displayCurrency(null);
+  displayPopulation(null);
+  displayArea(null);
+  displayDensity(null);
+  displayMap(null);
 }
 
 function updateFavBtn() {
