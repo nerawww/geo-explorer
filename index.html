@@ -1,12 +1,53 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Geo Explorer</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer type="module" src="./main.js"></script>
+    <title>Geo Exporer - Search</title>
   </head>
-
   <body>
-    <form>bonjour</form>
+    <header>
+      <div class="headerLeft">
+        <h1></h1>
+      </div>
+      <div class="headerRight">
+        <ul id="favList"></ul>
+      </div>
+      <h1>🌍 Geo Explorer</h1>
+      <div class="headerCenter">
+        <!--l'id countryInput permet de définir le pays dans le fichier Search.js  -->
+        <input
+          type="text"
+          id="countryInput"
+          autocomplete="off"
+          placeholder="Rechercher un pays..."
+        />
+        <button id="searchBtn">Rechercher</button>
+      </div>
+    </header>
+    <div class="infoBlocksWrapper">
+      <section id="infoBlockLeft" class="infoBlock">
+        <h2>Informations sur le pays</h2>
+        <div id="infoContentLeft">
+          <div id="countryName"></div>
+          <div id="capitalContainer"></div>
+          <div id="regionContainer"></div>
+          <div id="languageContainer"></div>
+          <div id="monneyContainer"></div>
+          <div id="populationContainer"></div>
+          <div id="areaContainer"></div>
+          <div id="densityContainer"></div>
+          <div id="flagContainer"></div>
+        </div>
+        <button id="favBtn">Ajouter aux Favoris</button>
+      </section>
+      <section id="infoBlockRight" class="infoBlock">
+        <h2>Localisation sur la carte</h2>
+        <div id="infoContentRight"></div>
+      </section>
+    </div>
+    <footer></footer>
   </body>
 </html>
