@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geo Explorer</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="main.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="favorites">
+            <button id="favorites-btn" class="favorites-btn">
+                🤍 Favorites
+            </button>
+            <div id="favorites-dropdown" class="favorites-dropdown hidden">
+                <div class="favorites-list">
+                    <p class="no-favorites">No favorites saved</p>
+                </div>
+            </div>
+        </div>
+
+        <h1 class="title">
+            <a href="#" id="home-link">🌍 Geo Explorer</a>
+        </h1>
+
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search for a country or capital..." class="search-input">
+            <button id="search-btn" class="search-btn">🔍</button>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="country-details">
+            <div class="welcome-message">
+                <h2>Welcome to Geo Explorer</h2>
+                <p>Search for a country to discover detailed geographical information.</p>
+                <div class="earth-icon">🌍</div>
+            </div>
+            <div id="country-info" class="country-info hidden"></div>
+        </section>
+
+        <section class="map-section">
+            <div class="map-placeholder">
+                <h3>Interactive Map</h3>
+                <p>The country map will appear here.</p>
+                <div class="map-icon">🗺️</div>
+            </div>
+            <div id="country-map" class="country-map hidden"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Geo Explorer | Data provided by <a href="https://restcountries.com/" target="_blank">REST
+                Countries API</a></p>
+    </footer>
+</body>
+
+</html>
